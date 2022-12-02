@@ -1,0 +1,14 @@
+set serveroutput on;
+declare
+emp_rec emp%rowtype;
+cursor empcur is select * from emp where sal >1000;
+begin
+open empcur;
+loop
+fetch empcur into emp_rec;
+exit when empcur%notfound;
+dbms_output.put_line(emp_rec.empno||'        '||emp_rec.ename||'        '||emp_rec.sal);
+end loop;
+close empcur;
+end;
+
